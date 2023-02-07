@@ -19,7 +19,7 @@ class Boundary {
   }
 
   draw() {
-    c.fillStyle = "red";
+    c.fillStyle = "rgba(255, 0, 0, 0)";
     c.fillRect(this.position.x, this.position.y, this.width, this.height);
   }
 }
@@ -116,10 +116,10 @@ const movables = [background, ...boundaries];
 
 function rectangularCollision({ rectangle1, rectangle2 }) {
   return (
-    rectangle1.position.x + rectangle1.width >= rectangle2.position.x &&
+    rectangle1.position.x + rectangle1.width - 20 >= rectangle2.position.x &&
     rectangle1.position.x <= rectangle2.position.x + rectangle2.width &&
     rectangle1.position.y <= rectangle2.position.y + rectangle2.height &&
-    rectangle1.position.y + 48 >= rectangle2.position.y
+    rectangle1.position.y + 60 >= rectangle2.position.y
   );
 }
 
