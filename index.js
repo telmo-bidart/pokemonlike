@@ -118,7 +118,8 @@ function rectangularCollision({ rectangle1, rectangle2 }) {
   return (
     rectangle1.position.x + rectangle1.width >= rectangle2.position.x &&
     rectangle1.position.x <= rectangle2.position.x + rectangle2.width &&
-    rectangle1.position.y <= rectangle2.position.y + rectangle2.height
+    rectangle1.position.y <= rectangle2.position.y + rectangle2.height &&
+    rectangle1.position.y + 48 >= rectangle2.position.y
   );
 }
 
@@ -155,14 +156,65 @@ function animate() {
       movables.position.y += 3;
     });
   } else if (keys.a.pressed && lastKey === "a") {
+    for (let i = 0; i < boundaries.length; i++) {
+      const boundary = boundaries [i]
+      if (
+        rectangularCollision({
+          rectangle1: player,
+          rectangle2: {...boundary, position: {
+            x: boundary.position.x + 3,
+            y: boundary.position.y
+          }},
+        })
+      ) {
+        console.log("colisao");
+        moving = false
+        break 
+      }
+    }
+    if (moving)
     movables.forEach((movables) => {
       movables.position.x += 3;
     });
   } else if (keys.s.pressed && lastKey === "s") {
+    for (let i = 0; i < boundaries.length; i++) {
+      const boundary = boundaries [i]
+      if (
+        rectangularCollision({
+          rectangle1: player,
+          rectangle2: {...boundary, position: {
+            x: boundary.position.x,
+            y: boundary.position.y - 3
+          }},
+        })
+      ) {
+        console.log("colisao");
+        moving = false
+        break 
+      }
+    }
+    if (moving)
     movables.forEach((movables) => {
       movables.position.y -= 3;
     });
   } else if (keys.d.pressed && lastKey === "d") {
+    for (let i = 0; i < boundaries.length; i++) {
+      const boundary = boundaries [i]
+      if (
+        rectangularCollision({
+          rectangle1: player,
+          rectangle2: {...boundary, position: {
+            x: boundary.position.x - 3,
+            y: boundary.position.y
+          }},
+        })
+      ) {
+        console.log("colisao");
+        moving = false
+        break 
+      }
+    }
+    if (moving)
     movables.forEach((movables) => {
       movables.position.x -= 3;
     });
