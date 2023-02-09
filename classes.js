@@ -27,7 +27,7 @@ class Sprite {
         this.frames.elasped++;
     }
   }
-    if (this.frames.elasped % 10 === 0) {
+    if (this.frames.elasped % 20 === 0) {
       if (this.frames.val < this.frames.max - 1) this.frames.val++
       else this.frames.val = 0
     }
@@ -44,7 +44,7 @@ class Boundary {
   }
 
   draw() {
-    c.fillStyle = "rgba(255, 0, 0, 0)";
+    c.fillStyle = "rgba(255, 0, 0, 1)";
     c.fillRect(this.position.x, this.position.y, this.width, this.height);
   }
 }
