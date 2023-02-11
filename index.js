@@ -156,7 +156,7 @@ function animate() {
         ) -
         Math.max(player.position.x, battle.position.x)) *
           (Math.min(
-            player.position.y + player.height,
+            player.position.y + 40,
             battle.position.y + battle.height
           ) - Math.max (player.position.y, battle.position.y))
       if (
@@ -164,7 +164,7 @@ function animate() {
           rectangle1: player,
           rectangle2: battle,
         }) &&
-        overlappingArea > (player.width * player.height) / 2
+        overlappingArea > (player.width * 40) / 2 && Math.random() < 0.02
       ) {
         console.log("battle zone colision");
 
