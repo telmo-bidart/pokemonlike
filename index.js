@@ -134,6 +134,10 @@ function rectangularCollision({ rectangle1, rectangle2 }) {
   );
 }
 
+const battle = {
+  initiated: false
+}
+
 function animate() {
   window.requestAnimationFrame(animate);
   background.draw();
@@ -146,6 +150,9 @@ function animate() {
   player.draw();
   foreground.draw();
 
+  if (battle.initiated) return
+
+  // activate a battle 
   if (keys.w.pressed || keys.a.pressed || keys.d.pressed || keys.s.pressed) {
     for (let i = 0; i < battles.length; i++) {
       const battle = battles[i];
@@ -166,8 +173,8 @@ function animate() {
         }) &&
         overlappingArea > (player.width * 40) / 2 && Math.random() < 0.02
       ) {
-        console.log("battle zone colision");
-
+        console.log("activate battle")
+        battle.initiated = true 
         break;
       }
     }
