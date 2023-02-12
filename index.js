@@ -1,6 +1,5 @@
 const canvas = document.querySelector("canvas");
 const c = canvas.getContext("2d");
-console.log(battlesData);
 
 canvas.width = 1024;
 canvas.height = 576;
@@ -134,9 +133,9 @@ function rectangularCollision({ rectangle1, rectangle2 }) {
   );
 }
 
-const battle = {
-  initiated: false
-}
+const battleStart = {
+  initiated: false,
+};
 
 function animate() {
   window.requestAnimationFrame(animate);
@@ -150,38 +149,50 @@ function animate() {
   player.draw();
   foreground.draw();
 
-  if (battle.initiated) return
+  let moving = true;
+  player.moving = true;
 
-  // activate a battle 
+  if (battleStart.initiated) return;
+
+  // activate a battle
   if (keys.w.pressed || keys.a.pressed || keys.d.pressed || keys.s.pressed) {
     for (let i = 0; i < battles.length; i++) {
       const battle = battles[i];
       const overlappingArea =
-       (Math.min(
+        (Math.min(
           player.position.x + player.width,
           battle.position.x + battle.width
         ) -
-        Math.max(player.position.x, battle.position.x)) *
-          (Math.min(
-            player.position.y + 40,
-            battle.position.y + battle.height
-          ) - Math.max (player.position.y, battle.position.y))
+          Math.max(player.position.x, battle.position.x)) *
+        (Math.min(player.position.y + 40, battle.position.y + battle.height) -
+          Math.max(player.position.y, battle.position.y));
       if (
         rectangularCollision({
           rectangle1: player,
           rectangle2: battle,
         }) &&
-        overlappingArea > (player.width * 40) / 2 && Math.random() < 0.02
+        overlappingArea > (player.width * 40) / 2 &&
+        Math.random() < 0.02
       ) {
-        console.log("activate battle")
-        battle.initiated = true 
+        console.log("activate battle");
+        battleStart.initiated = true;
+        gsap.to('#overlappingDiv', {
+          opacity: 1,
+          repeat: 3,
+          yoyo: true,
+          duration: 0.4,
+          onComplete() {
+            gsap.to('#overlappingDiv', {
+              opacity: 1
+            })
+          }
+
+        })
         break;
       }
     }
   }
 
-  let moving = true;
-  player.moving = true;
   if (keys.w.pressed && lastKey === "w") {
     player.moving = false;
     player.image = player.sprites.up;
