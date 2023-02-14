@@ -188,11 +188,16 @@ function animate() {
           onComplete() {
             gsap.to('#overlappingDiv', {
               opacity: 1,
-              duration: 0.4
+              duration: 0.4,
+              onComplete() {
+                animateBattle()
+                gsap.to('#overlappingDiv', {
+                  opacity: 0,
+                  duration: 0.4
+                })
+                
+              }
             })
-            // activate a new animation loop
-            animateBattle()
-            // deactive current animation
           }
         })
         break;
@@ -320,9 +325,9 @@ const battleBackground = new Sprite({
 })
 function animateBattle() {
   window.requestAnimationFrame(animateBattle)
-  console.log('animating battle')
+  battleBackground.draw()
 }
-
+ 
 let lastKey = "";
 window.addEventListener("keydown", (e) => {
   switch (e.key) {
