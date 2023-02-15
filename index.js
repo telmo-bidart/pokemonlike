@@ -82,6 +82,7 @@ const player = new Sprite({
   image: playerDownImage,
   frames: {
     max: 4,
+    hold: 10
   },
   sprites: {
     up: playerUpImage,
@@ -151,7 +152,7 @@ function animate() {
   foreground.draw();
 
   let moving = true;
-  player.moving = true;
+  player.animate = true;
 
   console.log(animationID)
 
@@ -206,7 +207,7 @@ function animate() {
   }
 
   if (keys.w.pressed && lastKey === "w") {
-    player.moving = false;
+    player.animate = false;
     player.image = player.sprites.up;
     for (let i = 0; i < boundaries.length; i++) {
       const boundary = boundaries[i];
@@ -233,7 +234,7 @@ function animate() {
         movables.position.y += 3;
       });
   } else if (keys.a.pressed && lastKey === "a") {
-    player.moving = false;
+    player.animate = false;
     player.image = player.sprites.left;
     for (let i = 0; i < boundaries.length; i++) {
       const boundary = boundaries[i];
@@ -259,7 +260,7 @@ function animate() {
         movables.position.x += 3;
       });
   } else if (keys.s.pressed && lastKey === "s") {
-    player.moving = false;
+    player.animate = false;
     player.image = player.sprites.down;
     for (let i = 0; i < boundaries.length; i++) {
       const boundary = boundaries[i];
@@ -285,7 +286,7 @@ function animate() {
         movables.position.y -= 3;
       });
   } else if (keys.d.pressed && lastKey === "d") {
-    player.moving = false;
+    player.animate = false;
     player.image = player.sprites.right;
     for (let i = 0; i < boundaries.length; i++) {
       const boundary = boundaries[i];
@@ -323,9 +324,41 @@ const battleBackground = new Sprite({
   },
   image: battleBackgroundImage
 })
+
+
+const draggleImage = new Image()
+draggleImage.src = './img/draggleSprite.png'
+const draggle = new Sprite({
+  position: {
+    x: 800,
+    y: 100
+  },
+  image: draggleImage,
+  frames: {
+    max: 4
+  },
+  animate: false
+})
+
+const embyImage = new Image()
+embyImage.src = './img/embySprite.png'
+const emby = new Sprite({
+  position: {
+    x: 285,
+    y: 325
+  },
+  image: embyImage,
+  frames: {
+    max: 4
+  },
+  animate: false
+})
+
 function animateBattle() {
   window.requestAnimationFrame(animateBattle)
   battleBackground.draw()
+  draggle.draw()
+  emby.draw()
 }
  
 let lastKey = "";

@@ -1,10 +1,31 @@
-<style>
-  body {
-    background-color: blueviolet;
-  }
-</style>
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+
+    * {
+      font-family: 'Press Start 2P', cursive;
+    }
+
+    body {
+      background-color: blueviolet;
+    }
+    button {
+      border: 0;
+      cursor: pointer;
+      font-size: 16px;
+    }
+  
+    button:hover {
+      background-color: gray;
+    }
+  </style>
+
+</head>
 <div style="display: inline-block; position: relative">
-  <div id="overlappingDiv"
+  <div
+    id="overlappingDiv"
     style="
       background-color: red;
       position: absolute;
@@ -17,6 +38,30 @@
     "
   ></div>
   <canvas></canvas>
+
+  <div
+    style="
+      background-color: white;
+      height: 125px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      border-top: 4px black solid;
+      display: flex;
+    "
+  >
+    <div style="width: 66.66%; display: grid; grid-template-columns: repeat(2, 1fr);">
+      <button>Attack1</button>
+      <button>Attack2</button>
+      <button>Attack3</button>
+      <button>Attack4</button>
+    </div>
+    <div style="display: flex; align-items: center; justify-content: center; width: 33.33%;
+    border-left: 4px black solid; font-size: 10px;">
+      <h1>Atack type</h1>
+    </div>
+</div>
 </div>
 <script
   src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"
