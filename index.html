@@ -1,11 +1,13 @@
 <head>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+    rel="stylesheet"
+  />
   <style>
-
     * {
-      font-family: 'Press Start 2P', cursive;
+      font-family: "Press Start 2P", cursive;
     }
 
     body {
@@ -16,12 +18,11 @@
       cursor: pointer;
       font-size: 16px;
     }
-  
+
     button:hover {
       background-color: gray;
     }
   </style>
-
 </head>
 <div style="display: inline-block; position: relative">
   <div
@@ -37,6 +38,26 @@
       pointer-events: none;
     "
   ></div>
+
+  <div
+    style="
+      background-color: white;
+      width: 250px;
+      position: absolute;
+      top: 50px;
+      left: 50px;
+      border: 4px black solid;
+      padding: 12px;
+    "
+  >
+<h1 style="font-size: 16px;">Draggle</h1>
+<div style="position: relative;">
+  <div style="height: 5px; background-color: #ddd; margin-top: 5px;">
+  <div style="height: 5px; background-color: greenyellow; margin-top: 5px;">
+</div>
+
+</div>
+</div>
   <canvas></canvas>
 
   <div
@@ -51,17 +72,31 @@
       display: flex;
     "
   >
-    <div style="width: 66.66%; display: grid; grid-template-columns: repeat(2, 1fr);">
+    <div
+      style="
+        width: 66.66%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+      "
+    >
       <button>Attack1</button>
       <button>Attack2</button>
       <button>Attack3</button>
       <button>Attack4</button>
     </div>
-    <div style="display: flex; align-items: center; justify-content: center; width: 33.33%;
-    border-left: 4px black solid; font-size: 10px;">
+    <div
+      style="
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 33.33%;
+        border-left: 4px black solid;
+        font-size: 10px;
+      "
+    >
       <h1>Atack type</h1>
     </div>
-</div>
+  </div>
 </div>
 <script
   src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"
