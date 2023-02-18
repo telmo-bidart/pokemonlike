@@ -32,6 +32,18 @@ class Sprite {
       else this.frames.val = 0
     }
 }
+
+attack({attack, recipient}) {
+  const tl = gsap.timeline()
+  tl.to(this.position, {
+    x: this.position.x - 50
+  }).to(this.position, {
+    x: this.position.x + 90
+  }).to(this.position, {
+    x: this.position.x
+  })
+}
+
 }
 
 class Boundary {
