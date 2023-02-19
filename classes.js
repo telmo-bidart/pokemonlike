@@ -9,8 +9,12 @@ class Sprite {
     };
     this.animate = animate
     this.sprites = sprites
+    this.opacity = 1
+    this.health = 100
   }
   draw() {
+    c.save()
+    c.globalAlpha = this.opacity
     c.drawImage(
       this.image,
       this.frames.val * 48,
@@ -22,6 +26,7 @@ class Sprite {
       this.image.width / this.frames.max,
       this.image.height
     );
+    c.restore()
     if (!this.animate) {
       if (this.frames.max > 1) {
         this.frames.elasped++;
@@ -38,7 +43,27 @@ attack({attack, recipient}) {
   tl.to(this.position, {
     x: this.position.x - 50
   }).to(this.position, {
-    x: this.position.x + 90
+    x: this.position.x + 90,
+    duration: 0.1,
+    onComplete: () => {
+      // Enemy gets hit
+      gsap.to('#enemyHealtBar', {
+        width: this.health - attack.damage
+      })
+      gsap.to(recipient.position, {
+        x: recipient.position.x + 10,
+        yoyo: true,
+        repeat: 5,
+        duration: 0.08
+      })
+
+      gsap.to(recipient, {
+        opacity: 0,
+        repeat: 5,
+        yoyo: true,
+        duration: 0.08
+      })
+    }
   }).to(this.position, {
     x: this.position.x
   })
