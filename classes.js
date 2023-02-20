@@ -10,7 +10,7 @@ class Sprite {
     this.animate = animate
     this.sprites = sprites
     this.opacity = 1
-    this.health = 100
+    this.health = 120
   }
   draw() {
     c.save()
@@ -48,7 +48,7 @@ attack({attack, recipient}) {
     onComplete: () => {
       // Enemy gets hit
       gsap.to('#enemyHealtBar', {
-        width: this.health - attack.damage
+        width: this.health - attack.damage +'%' 
       })
       gsap.to(recipient.position, {
         x: recipient.position.x + 10,
@@ -59,10 +59,10 @@ attack({attack, recipient}) {
 
       gsap.to(recipient, {
         opacity: 0,
-        repeat: 5,
+        repeat: 6,
         yoyo: true,
-        duration: 0.08
-      })
+        duration: 0.07
+      }) // to give the effect that it received damage
     }
   }).to(this.position, {
     x: this.position.x

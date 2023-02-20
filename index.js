@@ -366,7 +366,7 @@ document.querySelectorAll('button').forEach((button) => {
     emby.attack({
       attack: {
         name: 'Tackle',
-        damage: 15,
+        damage: 10,
         type: 'Normal'
       },
       recipient: draggle
