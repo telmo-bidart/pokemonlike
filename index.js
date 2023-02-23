@@ -336,7 +336,7 @@ const draggle = new Sprite({
     max: 4,
   },
   animate: false,
-  isEnemy: true
+  isEnemy: true,
 });
 
 const embyImage = new Image();
@@ -360,20 +360,18 @@ function animateBattle() {
   emby.draw();
 }
 
-animateBattle()
+animateBattle();
 
-document.querySelectorAll('button').forEach((button) => {
-  button.addEventListener('click', () => {
+// event listener for attacks
+document.querySelectorAll("button").forEach((button) => {
+  button.addEventListener("click", (e) => {
+    const selectedAttack = attacks[e.currentTarget.innerHTML]
     emby.attack({
-      attack: {
-        name: 'Tackle',
-        damage: 10,
-        type: 'Normal'
-      },
-      recipient: draggle
-    })
-  })
-})
+      attack: selectedAttack,
+      recipient: draggle,
+    });
+  });
+});
 
 let lastKey = "";
 window.addEventListener("keydown", (e) => {
