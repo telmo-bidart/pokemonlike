@@ -312,6 +312,8 @@ function animate() {
 }
 animate();
 
+
+
 const battleBackgroundImage = new Image();
 battleBackgroundImage.src = "./img/battleBackground.png";
 const battleBackground = new Sprite({
@@ -332,6 +334,7 @@ const draggle = new Sprite({
   image: draggleImage,
   frames: {
     max: 4,
+    hold: 30
   },
   animate: false,
   isEnemy: true,
@@ -347,6 +350,7 @@ const emby = new Sprite({
   image: embyImage,
   frames: {
     max: 4,
+    hold: 20
   },
   animate: false,
 });

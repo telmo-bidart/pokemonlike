@@ -8,12 +8,15 @@ class Sprite {
     isEnemy = false,
   }) {
     this.position = position;
-    this.image = image;
+    this.image = new Image()
     this.frames = { ...frames, val: 0, elasped: 0 };
     this.image.onload = () => {
       this.width = this.image.width / this.frames.max;
       this.width = this.image.height;
     };
+
+    this.image.src = image.src
+
     this.animate = animate;
     this.sprites = sprites;
     this.opacity = 1;
@@ -25,7 +28,7 @@ class Sprite {
     c.globalAlpha = this.opacity;
     c.drawImage(
       this.image,
-      this.frames.val * 48,
+      this.frames.val * this.width,
       0,
       this.image.width / this.frames.max,
       this.image.height,
@@ -56,7 +59,12 @@ class Sprite {
             x: this.position.x,
             y: this.position.y
           },
-          image: fireballImage
+          image: fireballImage,
+          frames: {
+            max: 4,
+            hold: 10
+          },
+          animate: false
         })
 
         renderedSprites.push(fireball)
