@@ -140,7 +140,6 @@ const battleStart = {
 
 function animate() {
   const animationID = window.requestAnimationFrame(animate);
-  console.log(animationID);
   background.draw();
   boundaries.forEach((boundary) => {
     boundary.draw();
@@ -154,7 +153,6 @@ function animate() {
   let moving = true;
   player.animate = true;
 
-  console.log(animationID);
 
   if (battleStart.initiated) return;
 
@@ -353,11 +351,16 @@ const emby = new Sprite({
   animate: false,
 });
 
+const renderedSprites = []
 function animateBattle() {
   window.requestAnimationFrame(animateBattle);
   battleBackground.draw();
   draggle.draw();
   emby.draw();
+
+  renderedSprites.forEach(sprite => {
+    sprite.draw()
+  })
 }
 
 animateBattle();
@@ -369,6 +372,7 @@ document.querySelectorAll("button").forEach((button) => {
     emby.attack({
       attack: selectedAttack,
       recipient: draggle,
+      renderedSprites
     });
   });
 });
