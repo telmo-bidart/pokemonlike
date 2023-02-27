@@ -6,25 +6,30 @@ class Sprite {
     sprites,
     animate = false,
     isEnemy = false,
+    rotation = 0,
   }) {
     this.position = position;
-    this.image = new Image()
+    this.image = new Image();
     this.frames = { ...frames, val: 0, elasped: 0 };
     this.image.onload = () => {
       this.width = this.image.width / this.frames.max;
       this.width = this.image.height;
     };
 
-    this.image.src = image.src
+    this.image.src = image.src;
 
     this.animate = animate;
     this.sprites = sprites;
     this.opacity = 1;
     this.health = 100;
     this.isEnemy = isEnemy;
+    this.rotation = rotation;
   }
   draw() {
     c.save();
+    c.translate(this.position.x + this.width / 2, this.position.y + this.height / 2)
+    c.rotate(this.rotation)
+    c.translate( -this.position.x + this.width / 2, -this.position.y + this.height / 2)
     c.globalAlpha = this.opacity;
     c.drawImage(
       this.image,
@@ -50,36 +55,64 @@ class Sprite {
   }
 
   attack({ attack, recipient, renderedSprites }) {
+    let healthBar = "#enemyBar";
+    if (this.isEnemy) healthBar = "#playerBar";
+
+    let rotation = 1
+    if (his.isEnemy) rotation = -2.2
+
+    this.health -= attack.damage;
+
     switch (attack.name) {
-      case 'Fireball':
-        const fireballImage = new Image()
-        fireballImage.src = './img/fireball.png'
+      case "Fireball":
+        const fireballImage = new Image();
+        fireballImage.src = "./img/fireball.png";
         const fireball = new Sprite({
           position: {
             x: this.position.x,
-            y: this.position.y
+            y: this.position.y,
           },
           image: fireballImage,
           frames: {
             max: 4,
-            hold: 10
+            hold: 10,
           },
-          animate: false
-        })
+          rotation
+        });
 
-        renderedSprites.push(fireball)
+        renderedSprites.splice(1, 0, fireball)
 
-        break
+        gsap.to(fireball.position, {
+          x: recipient.position.x,
+          y: recipient.position.y,
+          onComplete: () => {
+            // Enemy gets hit
+            gsap.to(healthBar, {
+              width: this.health + "%",
+            });
+            gsap.to(recipient.position, {
+              x: recipient.position.x + 10,
+              yoyo: true,
+              repeat: 5,
+              duration: 0.08,
+            });
+
+            gsap.to(recipient, {
+              opacity: 0,
+              repeat: 5,
+              yoyo: true,
+              duration: 0.08,
+            });
+            renderedSprites.splice(1, 1, fireball);
+          },
+        });
+
+        break;
       case "Tackle":
         const tl = gsap.timeline();
 
-        this.health -= attack.damage;
-
         let movementDistance = 20;
         if (this.isEnemy) movementDistance = -20;
-
-        let healthBar = "#enemyBar";
-        if (this.isEnemy) healthBar = "#playerBar";
 
         tl.to(this.position, {
           x: this.position.x - movementDistance,
