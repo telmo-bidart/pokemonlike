@@ -77,7 +77,7 @@ class Sprite {
             max: 4,
             hold: 10,
           },
-          rotation
+          animate: false,
         });
 
         renderedSprites.splice(1, 0, fireball)
