@@ -153,7 +153,6 @@ function animate() {
   let moving = true;
   player.animate = true;
 
-
   if (battleStart.initiated) return;
 
   // activate a battle

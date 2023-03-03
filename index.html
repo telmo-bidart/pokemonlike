@@ -39,7 +39,6 @@
     "
   ></div>
 
-
   <!-- represents health bar of enemy-->
   <div
     style="
@@ -53,9 +52,19 @@
     "
   >
     <h1 style="font-size: 16px">Draggle</h1>
-    <div style="position: relative;">
+    <div style="position: relative">
       <div style="height: 5px; background-color: #ccc; margin-top: 10px"></div>
-      <div id="enemyBar" style="height: 5px; background-color: greenyellow; position: absolute; top: 0; left: 0; right: 0;"></div>
+      <div
+        id="enemyBar"
+        style="
+          height: 5px;
+          background-color: greenyellow;
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+        "
+      ></div>
     </div>
   </div>
   <!-- Represents health bar of player-->
@@ -72,14 +81,24 @@
     "
   >
     <h1 style="font-size: 16px">Emby</h1>
-    <div style="position: relative;">
+    <div style="position: relative">
       <div style="height: 5px; background-color: #ccc; margin-top: 10px"></div>
-      <div id="playerBar" style="height: 5px; background-color: greenyellow; position: absolute; top: 0; left: 0; right: 0;"></div>
+      <div
+        id="playerBar"
+        style="
+          height: 5px;
+          background-color: greenyellow;
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+        "
+      ></div>
     </div>
   </div>
 
   <div></div>
-  
+
   <canvas></canvas>
 
   <div
@@ -94,14 +113,14 @@
       display: flex;
     "
   >
-    <div id="attacksBox"
+    <div
+      id="attacksBox"
       style="
         width: 66.66%;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
       "
-    >
-    </div>
+    ></div>
     <div
       style="
         display: flex;
